@@ -50,7 +50,8 @@ module.exports = {
       delete obj.csrf;
       return obj;
 
-    },
-    connection:'appngasaldb'
-  }
+    }
+    
+  },
+  connection:'appngasaldb'
 };
