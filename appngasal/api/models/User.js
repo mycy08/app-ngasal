@@ -50,6 +50,7 @@ module.exports = {
       delete obj.csrf;
       return obj;
 
+    
     }
     
   },
