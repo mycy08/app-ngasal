@@ -12,7 +12,8 @@ module.exports = {
                 console.log(err)
             
         }
-        res.redirect('/user');
+        res.json(201,user);
+        //res.send('oke')
         
         });
     },
@@ -31,7 +32,7 @@ module.exports = {
             if(err){
                 return res.redirect('/user/' + req.param('id'));
             }
-            res.redirect('/user');
+            res.json(201,user);
         });
     },
     delete: function(req, res, next){
@@ -43,7 +44,7 @@ module.exports = {
             User.destroy(req.param('id'), function userDestroyed(err){
                 if(err) return next(err);
             });
-            res.redirect('/user')
+            res.json(202,user);
         });
     }
        

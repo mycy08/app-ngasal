@@ -8,7 +8,32 @@
 module.exports = {
 
   attributes: {
+      futsal_name :{
+        type:'string'
+      },
+      address:{
+        type:'string'
+      },
+      location:{
+        type:'string'
+      },
+      address:{
+        type:'string'
+      },
+      type_field:{
+        type:'string'
+      },
+      price:{
+        type:'integer'
+      },
+      description:{
+        type:'string'
+      },
+      districts:{
+        type:'string'
+      }
 
-  }
+  },
+  connection:'appngasaldb'
 };
 

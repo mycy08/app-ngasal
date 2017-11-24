@@ -12,7 +12,7 @@ module.exports = {
                 console.log(err)
             
         }
-        res.redirect('/booking');
+        res.json(201,booking);
         
         });
     },
@@ -20,9 +20,9 @@ module.exports = {
         Booking.findOne(req.param('id'), function foundBookings(err,booking){
             if(err) return next(err);
             if(!booking) return next('Booking doesn\'t exist.');
-            res.view({
-                booking: booking
-            });
+            // res.view({
+            //     booking: booking
+            // });
         });
     },
 
@@ -31,7 +31,7 @@ module.exports = {
             if(err){
                 return res.redirect('/booking/' + req.param('id'));
             }
-            res.redirect('/booking');
+            res.json(201,booking);
         });
     },
     delete: function(req, res, next){
@@ -43,7 +43,7 @@ module.exports = {
             Booking.destroy(req.param('id'), function bookingDestroyed(err){
                 if(err) return next(err);
             });
-            res.redirect('/booking')
+            res.json(202,booking);
         });
     }
 };

@@ -29,7 +29,7 @@ module.exports = {
       type:'integer'
     },
     birth_date:{
-      type:'number'
+      type:'string'
 
     },
     photo:{
