@@ -7,7 +7,7 @@
 
 module.exports = {
 	create: function(req, res, next){
-        Futsal_field.create(req.params.all(),function bookingCreated(err, futsalField){
+        Futsal_field.create(req.params.all(),function futsalFieldCreated(err, futsalField){
             if(err){
                 console.log(err)
             
@@ -17,9 +17,9 @@ module.exports = {
         });
     },
     edit: function(req, res, next){
-        Futsal_field.findOne(req.param('id'), function foundBookings(err,futsalField){
+        Futsal_field.findOne(req.param('id'), function foundFutsalField(err,futsalField){
             if(err) return next(err);
-            if(!booking) return next('Futsal_field doesn\'t exist.');
+            if(!booking) return next('Futsal Field doesn\'t exist.');
             // res.view({
             //     booking: booking
             // });
@@ -27,7 +27,7 @@ module.exports = {
     },
 
     update: function(req, res, next){
-        Futsal_field.update(req.param('id'),req.params.all(), function bookingUpdated(err){
+        Futsal_field.update(req.param('id'),req.params.all(), function futsalFieldUpdated(err){
             if(err){
                 return res.redirect('/Futsal_field/' + req.param('id'));
             }
@@ -35,12 +35,12 @@ module.exports = {
         });
     },
     delete: function(req, res, next){
-        Futsal_field.findOne(req.param('id'), function foundBookings(err,futsalField){
+        Futsal_field.findOne(req.param('id'), function foundFutsalField(err,futsalField){
             if(err) return next(err);
 
             if(!futsalField) return next('Futsal field doesn\'t exist.');
 
-            Futsal_field.destroy(req.param('id'), function bookingDestroyed(err){
+            Futsal_field.destroy(req.param('id'), function futsalFieldDestroyed(err){
                 if(err) return next(err);
             });
             res.json(202,futsalField);
