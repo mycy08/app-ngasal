@@ -2,15 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bgcolor"
-    tools:context="tercyduk.appngasal.modules.auth.user.login">
-
+    tools:context="tercyduk.appngasal.modules.auth.user.register">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical">
+
         <LinearLayout
             android:id="@+id/inputCont"
             android:layout_width="match_parent"
@@ -22,7 +23,7 @@
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="250dp">
+                android:layout_marginTop="125dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -32,15 +33,25 @@
                     <EditText
                         style="@style/LoginSingup"
                         android:layout_marginTop="10dp"
-                        android:hint="E-mail" />
+                        android:hint="Name" />
+
+                    <EditText
+                        style="@style/LoginSingup"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress" />
+                    <EditText
+                        style="@style/LoginSingup"
+                        android:hint="Handphone" />
+                    <EditText
+                        style="@style/LoginSingup"
+                        android:hint="Password"
+                        android:inputType="textPassword" />
 
 
                     <EditText
                         style="@style/LoginSingup"
-                        android:hint="Password"
-                        android:inputType="textPassword"
-                        />
-
+                        android:hint="Confirm Password"
+                        android:inputType="textPassword" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -53,13 +64,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="D'ont have account? " />
+                            android:text="Already have account? " />
 
                         <TextView
                             android:id="@+id/txtSignin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Register here"
+                            android:onClick="onClick"
+                            android:text="Sign In"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -75,10 +87,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/inputCont"
-            android:layout_marginBottom="-220dp"
-            android:src="@mipmap/sigin"
-
-            />
+            android:layout_marginBottom="-120dp"
+            app:srcCompat="@mipmap/register" />
 
         <Button
             android:id="@+id/btnCreateAccount"
@@ -90,11 +100,10 @@
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:text="Login"
+            android:onClick="onClick"
+            android:text="Create An Account"
             android:textAllCaps="false"
-            android:textColor="#ffffff"
-            android:textStyle="bold" />
-
+            android:textColor="@android:color/white" />
 
     </RelativeLayout>
 
