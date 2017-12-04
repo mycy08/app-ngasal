@@ -45,7 +45,8 @@ module.exports = {
         });
     },
     delete: function(req, res, next){
-        User.findOne(req.param('id'), function foundUsers(err,user){
+        var id = req.param('id');
+        User.findOne(id, function foundUsers(err,user){
             if(err) return next(err);
 
             if(!user) return res.send(404,'User doesn\'t exist.');
@@ -53,7 +54,8 @@ module.exports = {
             User.destroy(req.param('id'), function userDestroyed(err){
                 if(err) return next(err);
             });
-            res.json(202,user);
+            res.send(200,'user id '+ id + ' has been deleted')
+            //res.json(202,user);
         });
     },
     login : function(req,res){
