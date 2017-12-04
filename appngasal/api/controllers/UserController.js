@@ -55,6 +55,9 @@ module.exports = {
             });
             res.json(202,user);
         });
+    },
+    login : function(req,res){
+        
     }
        
     
