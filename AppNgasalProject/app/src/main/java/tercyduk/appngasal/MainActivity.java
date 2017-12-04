@@ -7,7 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -19,71 +23,26 @@ import okhttp3.HttpUrl;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tvdata;
-
+    TextView tvdata;
+    String resultNama;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initComponents();
 
-        Button btnHit = (Button)findViewById(R.id.btnHit);
-        tvdata = (TextView)findViewById(R.id.tvJsonItem);
-
-        btnHit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new JSONTask().execute("http://10.0.3.2:1337/user");
-            }
-        });
-
+        // untuk mendapatkan data dari activity sebelumnya, yaitu activity login.
+        Bundle extras = getIntent().getExtras();
+        if (extras != null)
+            resultNama = extras.getString("result_nama");
+        tvdata.setText(resultNama.toString());
 
 
     }
-    public class JSONTask extends AsyncTask<String, String, String>{
-        @Override
-        protected String doInBackground(String... params) {
-            HttpURLConnection connection = null;
-            BufferedReader reader = null;
-            try{
-                URL url = new URL(params[0]);
-                connection =(HttpURLConnection) url.openConnection();
-                connection.connect();
-
-                InputStream stream = connection.getInputStream();
-                reader = new BufferedReader(new InputStreamReader(stream));
-                StringBuffer buffer = new StringBuffer();
-
-                String line ="";
-                while((line = reader.readLine()) != null){
-                    buffer.append(line);
-                }
-
-
-                return buffer.toString();
-            }catch (MalformedURLException e){
-                e.printStackTrace();
-            }catch (IOException e){
-                e.printStackTrace();
-            }finally{
-                if(connection != null){
-                    connection.disconnect();
-                }
-                connection.disconnect();
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            tvdata.setText(result);
-        }
+    private void initComponents(){
+        tvdata = (TextView) findViewById(R.id.tvJsonItem);
     }
+
+
 }
 

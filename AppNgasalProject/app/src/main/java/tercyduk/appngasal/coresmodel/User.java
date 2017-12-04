@@ -5,4 +5,5 @@ package tercyduk.appngasal.coresmodel;
  */
 
 public class User {
+    public String name;
 }
