@@ -54,6 +54,7 @@ module.exports = {
     },
     
     
+    
   },
    beforeCreate: function(user, cb) {
       bcrypt.genSalt(10, function(err, salt) {
@@ -68,6 +69,17 @@ module.exports = {
             }
           });
       });
+  },
+  comparePassword : function (password, user, cb) {
+    bcrypt.compare(password, user.password, function (err, match) {
+
+      if(err) cb(err);
+      if(match) {
+        cb(null, true);
+      } else {
+        cb(err);
+      }
+    });
   },
   connection:'appngasaldb'
 };

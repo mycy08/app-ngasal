@@ -8,22 +8,16 @@
 module.exports = {
 	create: function(req, res, next){
        var email = req.param('email')
-        User.findOne({email:email}).exec(function(err, user){
-            if(!user){
-                User.create(req.params.all(),function userCreated(err, user){
-                    if(err){
-                        console.log(err)
-                    
-                }       
-                return res.send(201,'Register Succesfull')
-                
-                });
-             
-            }
-            else{
-                return res.send(400,'Email is already registered')
-            }
-        })
+       User.create(req.body).exec(function (err, user) {
+        if (err) {
+          return res.json(err.status, {err: err});
+        }
+        // If user created successfuly we return user and token as response
+        if (user) {
+          // NOTE: payload is { id: user.id}
+          res.json(200, {user: user, token: jwToken.issue({id: user.id})});
+        }
+      });
         
     },
     edit: function(req, res, next){
